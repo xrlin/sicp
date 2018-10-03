@@ -8,3 +8,14 @@ Exercise 1.11
 
 (define (f n) (f-iter 2 1 0 0 n))
 ```
+
+Exercise 1.12
+
+```scheme
+(define (pascal-triangle row col) 
+    (cond ((> col row) 0) 
+          ((< col 0) 0) 
+          ((= col 1) 1) 
+          ((+ (pascal-triangle (- row 1) (- col 1)) 
+              (pascal-triangle (- row 1) col)))))
+```
