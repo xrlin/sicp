@@ -19,3 +19,16 @@ Exercise 1.12
           ((+ (pascal-triangle (- row 1) (- col 1)) 
               (pascal-triangle (- row 1) col)))))
 ```
+Exercise 1.16
+
+```scheme
+ (define (fast-expt b n) 
+   (define (iter a b n) 
+     (cond ((= n 0) a) 
+           ((even? n) (iter a (square b) (/ n 2))) 
+           (else (iter (* a b) b (- n 1))))) 
+   (iter 1 b n)) 
+  
+ (define (square x) (* x x)) 
+```
+
