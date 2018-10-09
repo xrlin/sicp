@@ -32,3 +32,15 @@ Exercise 1.16
  (define (square x) (* x x)) 
 ```
 
+Exercise 1.17
+
+```scheme
+ (define (double x) (+ x x)) 
+ (define (halve x) (/ x 2)) 
+  
+ (define (* a b) 
+   (cond ((= b 0) 0) 
+         ((even? b) (double (* a (halve b)))) 
+         (else (+ a (* a (- b 1)))))) 
+```
+
