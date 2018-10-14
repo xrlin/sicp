@@ -47,3 +47,15 @@ Exercise 2.5
 )                                                                                            
                                                                                              
 ```
+
+Exercise 2.23
+
+```scheme
+(define (for-each fn items)                                                      
+        (define (iter sub)                                                       
+                (if (not (null? sub))                                            
+                        (begin (fn (car sub)) (iter (cdr sub))))                 
+        )                                                                        
+        (iter items)                                                             
+)                                                                                
+```
