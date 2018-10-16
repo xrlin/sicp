@@ -87,4 +87,29 @@ Exercise 2.28
 )
 ```
 
+Exercise 2.31
+
+```schem
+(define (tree-map fn tree)
+        (map (lambda (sub-tree)
+                (if (pair? sub-tree)
+                        (tree-map fn sub-tree)
+                (fn sub-tree))) tree)
+)
+
+(define square (lambda (x) (* x x)))
+(define (square-tree tree) (tree-map square tree))
+```
+
+Exercise 2.32
+
+```schema
+(define (subsets s)
+        (if (null? s)
+                (list nil)
+                (let ((rest (subsets (cdr s))))
+                        (append rest (map (lambda (l) (append (list (car s)) l)) rest))))
+)
+```
+
 
