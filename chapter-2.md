@@ -66,7 +66,7 @@ Exercise 2.27
 (define (deep-reverse tree)
         (cond ((null? tree) nil)
               ((not (pair? tree)) tree)
-              (else (list (deep-reverse (car (cdr tree))) (deep-reverse (car tree))))
+              (else (list (deep-reverse (cadr tree)) (deep-reverse (car tree))))
         )
 )
 
@@ -76,3 +76,15 @@ Exercise 2.27
   )
 
 ```
+
+Exercise 2.28
+
+```scheme
+(define (fringe tree)
+        (cond ((null? tree) nil)
+                ((pair? tree) (append (fringe (car tree)) (fringe (cdr tree))))
+                (else (list tree)))
+)
+```
+
+
