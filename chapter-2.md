@@ -59,3 +59,20 @@ Exercise 2.23
         (iter items)                                                             
 )                                                                                
 ```
+
+Exercise 2.27
+
+```scheme
+(define (deep-reverse tree)
+        (cond ((null? tree) nil)
+              ((not (pair? tree)) tree)
+              (else (list (deep-reverse (car (cdr tree))) (deep-reverse (car tree))))
+        )
+)
+
+(define (cadr x)
+  (if (null? (cdr x)) nil
+    (car (cdr x)))
+  )
+
+```
