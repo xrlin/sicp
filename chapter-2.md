@@ -142,6 +142,16 @@ Exercise 2.34
          0 coefficient-sequence))
 ```
 
+Exercise 2.36
+
+```scheme
+(define (accumulate-n op init seqs)
+  (if (null? (car seqs))
+      '()
+      (cons (accumulate op init (map (lambda (lst) (car lst)) seqs))
+            (accumulate-n op init (map (lambda (lst) (cdr lst)) seqs)))))
+```
+
 
 
 
