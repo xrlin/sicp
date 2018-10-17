@@ -103,12 +103,34 @@ Exercise 2.31
 
 Exercise 2.32
 
-```schema
+```scheme
 (define (subsets s)
         (if (null? s)
                 (list nil)
                 (let ((rest (subsets (cdr s))))
                         (append rest (map (lambda (l) (append (list (car s)) l)) rest))))
+)
+```
+
+Exercise 2.33
+
+```scheme
+(define (accumulate p initial sequence)
+        (if (null? sequence)
+                initial
+                (p (car sequence) (accumulate p initial (cdr sequence)))
+)
+
+(define (map p sequence)
+        (accumulate (lambda (x y) (cons (p x) y)) nil sequence)
+)
+
+(define (append seq1 seq2)
+        (accumulate cons seq2 seq1)
+)
+
+(define (length sequence)
+        (accumulate (lambda (a b) (+ b 1)) 0 sequence)
 )
 ```
 
