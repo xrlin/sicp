@@ -118,7 +118,7 @@ Exercise 2.33
 (define (accumulate p initial sequence)
         (if (null? sequence)
                 initial
-                (p (car sequence) (accumulate p initial (cdr sequence)))
+                (p (car sequence) (accumulate p initial (cdr sequence))))
 )
 
 (define (map p sequence)
@@ -133,5 +133,15 @@ Exercise 2.33
         (accumulate (lambda (a b) (+ b 1)) 0 sequence)
 )
 ```
+
+Exercise 2.34
+
+```scheme
+(define (horner-eval x coefficient-sequence)
+        (accumulate (lambda (this-coeff higher-terms) (+ (* x higher-terms) this-coeff))
+         0 coefficient-sequence))
+```
+
+
 
 
