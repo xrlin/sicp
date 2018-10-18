@@ -152,6 +152,12 @@ Exercise 2.36
             (accumulate-n op init (map (lambda (lst) (cdr lst)) seqs)))))
 ```
 
+Exercise 2.37
+
+```scheme
+(define (matrix-*-vector m v) (map (lambda (row) (dot-product v row)) m)
+```
+
 
 
 
