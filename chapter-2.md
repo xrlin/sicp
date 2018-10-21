@@ -170,6 +170,63 @@ Exercise 2.37
          m)))
 ```
 
+Exercise 2.42
+
+```scheme
+(define (enumerate-interval low high)
+        (if (> low high)
+                nil
+                (cons low (enumerate-interval (+ low 1) high))))
+
+(define (filter predicate sequence)
+  (cond ((null? sequence) '())
+        ((predicate (car sequence))
+         (cons (car sequence)
+               (filter predicate (cdr sequence))))
+        (else (filter predicate (cdr sequence)))))
+
+(define (accumulate op initial sequence)
+        (if (null? sequence)
+                initial
+        (op (car sequence)
+                (accumulate op initial (cdr sequence)))))
+
+(define (flatmap proc seq)
+        (accumulate append nil (map proc seq))
+)
+
+(define empty-board nil)
+
+(define (safe? k positions)
+        (define (safe?-r k-1-row c pos)
+                (cond ((null? pos) #t)
+                        ((or (= k-1-row (car pos)) (= (- (car pos) c) k-1-row) (= (+ (car pos) c) k-1-row)) #f)
+                        (else (safe?-r (car pos) (+ 1 c) (cdr pos))))
+        )
+        (safe?-r (car positions) 1 (cdr positions))
+)
+
+(define (adjoin-position new-row k rest-of-queens)
+        (cons new-row rest-of-queens)
+)
+
+(define (queens board-size)
+        (define (queen-cols k)
+                (if (= k 0)
+                        (list empty-board)
+                        (filter
+                                (lambda (positions) (safe? k positions))
+                                (flatmap
+                                        (lambda (rest-of-queens)
+                                                (map (lambda (new-row)
+                                                        (adjoin-position
+                                                        new-row k rest-of-queens))
+                                                        (enumerate-interval 1 board-size)))
+                                (queen-cols (- k 1))))))
+        (queen-cols board-size))
+
+```
+
 
 
 
